@@ -1,5 +1,5 @@
 import React from 'react';
-import { Phone, ArrowRight, ShieldCheck, Check } from 'lucide-react';
+import { Phone, Mail, ArrowRight, ShieldCheck } from 'lucide-react';
 
 interface SignatureOnboardingSectionProps {
   onOpenPaymentModal: () => void;
@@ -134,10 +134,15 @@ export const SignatureOnboardingSection: React.FC<SignatureOnboardingSectionProp
           <h4 className="text-lg font-serif font-semibold text-[#221C18]">
             Let us start planning the day you have always imagined
           </h4>
-          <div className="flex items-center justify-center gap-3 text-xs sm:text-sm font-medium text-[#9B783E]">
+          <div className="flex flex-wrap items-center justify-center gap-3 text-xs sm:text-sm font-medium text-[#9B783E]">
             <a href="tel:+919741885957" className="hover:text-[#221C18] transition-colors flex items-center gap-1">
               <Phone className="w-3.5 h-3.5 text-[#B89552]" />
               <span>+91 97418 85957</span>
+            </a>
+            <span>•</span>
+            <a href="mailto:admin@alayamweddings.in" className="hover:text-[#221C18] transition-colors flex items-center gap-1">
+              <Mail className="w-3.5 h-3.5 text-[#B89552]" />
+              <span>admin@alayamweddings.in</span>
             </a>
             <span>•</span>
             <a href="https://www.alayamweddings.in" target="_blank" rel="noreferrer" className="hover:text-[#221C18] transition-colors">

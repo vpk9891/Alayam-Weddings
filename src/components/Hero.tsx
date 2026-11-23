@@ -17,9 +17,8 @@ export const Hero: React.FC<HeroProps> = ({ onOpenPaymentModal, onExploreVenues 
 
       <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-8">
         {/* Subtle Luxury Kicker */}
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-[#E8DEC8] text-[#9B783E] text-xs font-medium tracking-[0.2em] uppercase silk-shadow">
-          <span className="w-1.5 h-1.5 rounded-full bg-[#B89552]"></span>
-          <span>South India's Premier Assisted Venue Curation</span>
+        <div className="inline-flex items-center px-4 py-1.5 rounded-full bg-white border border-[#E8DEC8] text-[#9B783E] text-xs font-medium tracking-[0.2em] uppercase silk-shadow">
+          <span>South India's One-Stop Wedding & Venue House</span>
         </div>
 
         {/* Hero Title styled like the reference Aurum design */}
@@ -32,7 +31,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenPaymentModal, onExploreVenues 
           </h1>
 
           <p className="text-base sm:text-lg text-[#68574B] max-w-2xl mx-auto font-light leading-relaxed">
-            Good wedding venues are fiercely competitive and get booked 9–12 months in advance. We secure priority dates, negotiate insider rates, and accompany you on private site audits.
+            Good wedding venues are fiercely competitive and get booked 9–12 months in advance. We lock your priority venue first, then orchestrate Decor, Catering, Photography, DJ, Makeup, and RSVP end-to-end under one roof.
           </p>
         </div>
 
@@ -63,11 +62,11 @@ export const Hero: React.FC<HeroProps> = ({ onOpenPaymentModal, onExploreVenues 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-left text-xs text-[#4B3E35] border-y border-[#F4EFE6] py-3.5">
             <div className="flex items-center gap-2">
               <Check className="w-3.5 h-3.5 text-[#B89552] shrink-0" />
-              <span>Dedicated Senior Venue Curator</span>
+              <span>Priority date holds at 85+ venues</span>
             </div>
             <div className="flex items-center gap-2">
               <Check className="w-3.5 h-3.5 text-[#B89552] shrink-0" />
-              <span>Priority date holds at 85+ venues</span>
+              <span>Save ₹2L–₹4L in negotiated rates</span>
             </div>
             <div className="flex items-center gap-2">
               <Check className="w-3.5 h-3.5 text-[#B89552] shrink-0" />
@@ -75,7 +74,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenPaymentModal, onExploreVenues 
             </div>
             <div className="flex items-center gap-2">
               <Check className="w-3.5 h-3.5 text-[#B89552] shrink-0" />
-              <span>Save ₹2L–₹4L in negotiated rates</span>
+              <span>One-stop Decor, Catering, DJ & Photo</span>
             </div>
           </div>
 

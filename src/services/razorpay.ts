@@ -1,3 +1,5 @@
+import avanaCourtyardImg from '../assets/images/venue_avana_courtyard_1795445477732.jpg';
+
 export interface PaymentDetails {
   name: string;
   email: string;
@@ -6,6 +8,7 @@ export interface PaymentDetails {
   guestCount: string;
   city: string;
   preferredStyle: string;
+  servicesNeeded?: string[];
 }
 
 export interface PaymentSuccessResult {
@@ -57,7 +60,7 @@ export const initiateRazorpayPayment = async (
     currency: 'INR',
     name: 'Alayam Weddings',
     description: 'Venue Curation Onboarding (100% Refundable)',
-    image: 'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=120&q=80',
+    image: avanaCourtyardImg,
     prefill: {
       name: details.name,
       email: details.email,
@@ -68,6 +71,9 @@ export const initiateRazorpayPayment = async (
       guest_count: details.guestCount || '250-300',
       city: details.city || 'Bangalore',
       style: details.preferredStyle || 'Heritage Courtyard',
+      services_requested: details.servicesNeeded?.length
+        ? details.servicesNeeded.join(', ')
+        : 'Full Turnkey Event Management',
       refund_policy: '100% Refundable on Venue Booking'
     },
     theme: {

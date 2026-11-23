@@ -1,3 +1,10 @@
+import avanaCourtyardImg from '../assets/images/venue_avana_courtyard_1795445477732.jpg';
+import royalPalaceImg from '../assets/images/venue_royal_palace_1795445476687.jpg';
+import glasshouseImg from '../assets/images/venue_glasshouse_1795445477278.jpg';
+import vedicMantapaImg from '../assets/images/venue_vedic_mantapa_1795445478675.jpg';
+import nandiMistImg from '../assets/images/venue_nandi_mist_1795445477843.jpg';
+import kabiniWatersideImg from '../assets/images/venue_kabini_waterside_1795445477850.jpg';
+
 export interface Venue {
   id: string;
   name: string;
@@ -32,7 +39,7 @@ export const VENUES_DATA: Venue[] = [
     recommendedGuests: '250 - 450 Guests',
     venueRentalStarting: '₹3,50,000',
     twoFunctionEstimate: '₹14,80,000',
-    image: 'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1200&q=80',
+    image: avanaCourtyardImg,
     features: [
       'Open-air central courtyard with terracotta tile roofs',
       'Ancient Banyan Tree Mandap altar with natural shade',
@@ -58,7 +65,7 @@ export const VENUES_DATA: Venue[] = [
     recommendedGuests: '300 - 800 Guests',
     venueRentalStarting: '₹6,00,000',
     twoFunctionEstimate: '₹22,50,000',
-    image: 'https://images.unsplash.com/photo-1545232979-fbf68fe9b10d?auto=format&fit=crop&w=1200&q=80',
+    image: royalPalaceImg,
     features: [
       'Colossal 28-foot ceiling grand hall with vintage crystal chandeliers',
       '45,000 sq.ft. carpet lawn for starlit evening receptions',
@@ -84,7 +91,7 @@ export const VENUES_DATA: Venue[] = [
     recommendedGuests: '200 - 350 Guests',
     venueRentalStarting: '₹4,20,000',
     twoFunctionEstimate: '₹16,50,000',
-    image: 'https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?auto=format&fit=crop&w=1200&q=80',
+    image: glasshouseImg,
     features: [
       'Full-glass climate-controlled atrium with panoramic sky views',
       'Sunken lotus pond with floating candle stages',
@@ -110,7 +117,7 @@ export const VENUES_DATA: Venue[] = [
     recommendedGuests: '250 - 400 Guests',
     venueRentalStarting: '₹2,80,000',
     twoFunctionEstimate: '₹12,90,000',
-    image: 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=1200&q=80',
+    image: vedicMantapaImg,
     features: [
       'Hand-carved granite pillars reminiscent of Hampi architecture',
       'Elevated traditional Homam fire altar with smoke ventilation system',
@@ -136,7 +143,7 @@ export const VENUES_DATA: Venue[] = [
     recommendedGuests: '200 - 450 Guests',
     venueRentalStarting: '₹4,80,000',
     twoFunctionEstimate: '₹18,20,000',
-    image: 'https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=1200&q=80',
+    image: nandiMistImg,
     features: [
       'Natural amphitheatre overlooking the morning mist valley',
       '55 Luxury villa suites with private plunge pools',
@@ -162,7 +169,7 @@ export const VENUES_DATA: Venue[] = [
     recommendedGuests: '150 - 250 Guests',
     venueRentalStarting: '₹5,50,000',
     twoFunctionEstimate: '₹21,00,000',
-    image: 'https://images.unsplash.com/photo-1544077960-604201fe74bc?auto=format&fit=crop&w=1200&q=80',
+    image: kabiniWatersideImg,
     features: [
       'Direct riverfront vows with floating bamboo rafts',
       'Private 40-cottage luxury wildlife reserve buyout',

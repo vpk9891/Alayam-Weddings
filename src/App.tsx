@@ -3,6 +3,7 @@ import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { WhyAssistedSection } from './components/WhyAssistedSection';
 import { SelectedVenuesSection } from './components/SelectedVenuesSection';
+import { OneStopServicesSection, EVENT_SERVICES } from './components/OneStopServicesSection';
 import { SignatureOnboardingSection } from './components/SignatureOnboardingSection';
 import { TestimonialsSection } from './components/TestimonialsSection';
 import { Footer } from './components/Footer';
@@ -13,10 +14,32 @@ import { ShieldCheck, Phone } from 'lucide-react';
 export default function App() {
   const [isPaymentModalOpen, setIsPaymentModalOpen] = useState<boolean>(false);
   const [selectedVenue, setSelectedVenue] = useState<Venue | null>(null);
+  const [selectedServices, setSelectedServices] = useState<string[]>([
+    'Venue Curation',
+    'Decor & Mandap',
+    'Catering',
+    'Photography'
+  ]);
 
   const handleOpenPaymentModal = (venue?: Venue | null) => {
     setSelectedVenue(venue || null);
     setIsPaymentModalOpen(true);
+  };
+
+  const handleToggleService = (serviceLabel: string) => {
+    setSelectedServices((prev) =>
+      prev.includes(serviceLabel)
+        ? prev.filter((item) => item !== serviceLabel)
+        : [...prev, serviceLabel]
+    );
+  };
+
+  const handleSelectAllServices = () => {
+    if (selectedServices.length === EVENT_SERVICES.length) {
+      setSelectedServices(['Venue Curation']);
+    } else {
+      setSelectedServices(EVENT_SERVICES.map((s) => s.shortLabel));
+    }
   };
 
   const handleExploreVenues = () => {
@@ -49,12 +72,20 @@ export default function App() {
           onSelectVenueForPayment={(venue) => handleOpenPaymentModal(venue)}
         />
 
-        {/* 4. Signature ₹2,999 Onboarding Section (From User Deck Page 7) */}
+        {/* 4. One-Stop End-to-End Event Management Services */}
+        <OneStopServicesSection
+          selectedServices={selectedServices}
+          onToggleService={handleToggleService}
+          onSelectAllServices={handleSelectAllServices}
+          onProceedWithServices={() => handleOpenPaymentModal()}
+        />
+
+        {/* 5. Signature ₹2,999 Onboarding Section (From User Deck Page 7) */}
         <SignatureOnboardingSection
           onOpenPaymentModal={() => handleOpenPaymentModal()}
         />
 
-        {/* 5. Client Testimonials (styled like Aurum reference) */}
+        {/* 6. Client Testimonials (styled like Aurum reference) */}
         <TestimonialsSection />
       </main>
 
@@ -96,6 +127,8 @@ export default function App() {
         isOpen={isPaymentModalOpen}
         onClose={() => setIsPaymentModalOpen(false)}
         selectedVenue={selectedVenue}
+        selectedServices={selectedServices}
+        onToggleService={handleToggleService}
       />
     </div>
   );

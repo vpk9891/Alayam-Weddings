@@ -37,6 +37,9 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenPaymentModal }) => {
         {/* Right Nav (Desktop) */}
         <div className="hidden lg:flex items-center gap-7">
           <nav className="flex items-center gap-7 text-xs uppercase tracking-[0.15em] font-medium text-[#4B3E35]">
+            <a href="#services" className="hover:text-[#B89552] transition-colors whitespace-nowrap">
+              Services
+            </a>
             <a href="#onboarding" className="hover:text-[#B89552] transition-colors whitespace-nowrap">
               The ₹2,999 Step
             </a>
@@ -89,6 +92,13 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenPaymentModal }) => {
               className="py-1 hover:text-[#B89552]"
             >
               Selected Venues
+            </a>
+            <a 
+              href="#services" 
+              onClick={() => setMobileMenuOpen(false)}
+              className="py-1 hover:text-[#B89552]"
+            >
+              End-to-End Services
             </a>
             <a 
               href="#onboarding" 

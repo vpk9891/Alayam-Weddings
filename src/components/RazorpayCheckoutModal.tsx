@@ -1,18 +1,23 @@
-import React, { useState } from 'react';
-import { X, ShieldCheck, Check, ArrowRight, Phone, Printer, Download, Sparkles } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { X, ShieldCheck, Check, ArrowRight, Phone } from 'lucide-react';
 import { initiateRazorpayPayment, PaymentDetails, PaymentSuccessResult } from '../services/razorpay';
 import { Venue } from '../data/venues';
+import { EVENT_SERVICES } from './OneStopServicesSection';
 
 interface RazorpayCheckoutModalProps {
   isOpen: boolean;
   onClose: () => void;
   selectedVenue?: Venue | null;
+  selectedServices?: string[];
+  onToggleService?: (serviceLabel: string) => void;
 }
 
 export const RazorpayCheckoutModal: React.FC<RazorpayCheckoutModalProps> = ({
   isOpen,
   onClose,
-  selectedVenue
+  selectedVenue,
+  selectedServices = [],
+  onToggleService
 }) => {
   const [partner1Name, setPartner1Name] = useState('');
   const [partner2Name, setPartner2Name] = useState('');
@@ -20,13 +25,30 @@ export const RazorpayCheckoutModal: React.FC<RazorpayCheckoutModalProps> = ({
   const [emailAddress, setEmailAddress] = useState('');
   const [weddingDate, setWeddingDate] = useState('');
   const [guestCount, setGuestCount] = useState('250-300');
-  const [city, setCity] = useState('Bangalore');
+  const [city] = useState('Bangalore');
+  const [localServices, setLocalServices] = useState<string[]>(selectedServices);
 
   const [isLoading, setIsLoading] = useState(false);
   const [paymentSuccess, setPaymentSuccess] = useState<PaymentSuccessResult | null>(null);
   const [errorMessage, setErrorMessage] = useState('');
 
+  useEffect(() => {
+    setLocalServices(selectedServices);
+  }, [selectedServices, isOpen]);
+
   if (!isOpen) return null;
+
+  const handleToggleLocalService = (label: string) => {
+    if (onToggleService) {
+      onToggleService(label);
+    } else {
+      setLocalServices((prev) =>
+        prev.includes(label) ? prev.filter((item) => item !== label) : [...prev, label]
+      );
+    }
+  };
+
+  const activeServices = onToggleService ? selectedServices : localServices;
 
   const handlePayNow = (e: React.FormEvent) => {
     e.preventDefault();
@@ -44,7 +66,8 @@ export const RazorpayCheckoutModal: React.FC<RazorpayCheckoutModalProps> = ({
       weddingDate: weddingDate || 'Flexible',
       guestCount,
       city,
-      preferredStyle: selectedVenue ? selectedVenue.name : 'Heritage Courtyard / Palace'
+      preferredStyle: selectedVenue ? selectedVenue.name : 'Heritage Courtyard / Palace',
+      servicesNeeded: activeServices
     };
 
     initiateRazorpayPayment(
@@ -226,6 +249,33 @@ export const RazorpayCheckoutModal: React.FC<RazorpayCheckoutModalProps> = ({
                     </select>
                   </div>
                 </div>
+
+                {/* One-Stop Event Services Selection */}
+                <div className="pt-1">
+                  <label className="text-[11px] font-semibold uppercase tracking-wider text-[#68574B] block mb-2">
+                    Services Needed (One-Stop Planning)
+                  </label>
+                  <div className="flex flex-wrap gap-1.5">
+                    {EVENT_SERVICES.map((svc) => {
+                      const isChecked = activeServices.includes(svc.shortLabel);
+                      return (
+                        <button
+                          key={svc.id}
+                          type="button"
+                          onClick={() => handleToggleLocalService(svc.shortLabel)}
+                          className={`px-2.5 py-1.5 text-[11px] rounded border transition-colors flex items-center gap-1 cursor-pointer ${
+                            isChecked
+                              ? 'bg-[#FAF7F2] border-[#B89552] text-[#221C18] font-semibold'
+                              : 'bg-white border-[#E8DEC8] text-[#68574B] hover:border-[#C5A869]'
+                          }`}
+                        >
+                          {isChecked && <Check className="w-3 h-3 text-[#B89552]" />}
+                          <span>{svc.shortLabel}</span>
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
               </div>
 
               {/* Trust statement */}
@@ -292,6 +342,14 @@ export const RazorpayCheckoutModal: React.FC<RazorpayCheckoutModalProps> = ({
                   <span className="text-[#8C7768]">Refund Status:</span>
                   <span className="text-[#25D366] font-semibold">100% Refundable on Venue Booking</span>
                 </div>
+                <div className="flex justify-between gap-4">
+                  <span className="text-[#8C7768] shrink-0">Services Brief:</span>
+                  <span className="font-medium text-[#221C18] text-right">
+                    {paymentSuccess.details.servicesNeeded?.length
+                      ? paymentSuccess.details.servicesNeeded.join(', ')
+                      : 'Venue Curation & Full Planning'}
+                  </span>
+                </div>
                 <div className="flex justify-between">
                   <span className="text-[#8C7768]">Assigned Senior Curator:</span>
                   <span className="font-semibold text-[#221C18]">Lakshmi Narayanan (Director)</span>
@@ -301,7 +359,13 @@ export const RazorpayCheckoutModal: React.FC<RazorpayCheckoutModalProps> = ({
               {/* Action Buttons */}
               <div className="space-y-3">
                 <a
-                  href={`https://wa.me/919741885957?text=Hi%20Alayam%20Weddings,%20I%20have%20paid%20the%20₹2,999%20onboarding%20deposit%20(Payment%20ID:%20${paymentSuccess.paymentId}).%20Please%20connect%20me%20with%20my%20curator.`}
+                  href={`https://wa.me/919741885957?text=${encodeURIComponent(
+                    `Hi Alayam Weddings, I have paid the ₹2,999 onboarding deposit (Payment ID: ${paymentSuccess.paymentId}). Services needed: ${
+                      paymentSuccess.details.servicesNeeded?.length
+                        ? paymentSuccess.details.servicesNeeded.join(', ')
+                        : 'Venue Curation & Turnkey Planning'
+                    }. Please connect me with my curator.`
+                  )}`}
                   target="_blank"
                   rel="noreferrer"
                   className="w-full py-3.5 px-4 rounded text-xs font-bold uppercase tracking-wider text-white bg-[#25D366] hover:bg-[#20be5b] transition-colors flex items-center justify-center gap-2 shadow-md"

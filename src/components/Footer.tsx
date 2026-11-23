@@ -1,11 +1,11 @@
 import React from 'react';
-import { Phone, Mail, MapPin, ShieldCheck, ArrowUp } from 'lucide-react';
+import { Phone, Mail, MapPin, ShieldCheck, ArrowUp, MessageCircle } from 'lucide-react';
 
 interface FooterProps {
   onOpenPaymentModal: () => void;
 }
 
-export const Footer: React.FC<FooterProps> = ({ onOpenPaymentModal }) => {
+export const Footer: React.FC<FooterProps> = () => {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -26,7 +26,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenPaymentModal }) => {
             </div>
 
             <p className="text-xs text-[#68574B] leading-relaxed font-light max-w-sm">
-              South India's premier assisted wedding venue curation house. We ensure couples secure their auspicious dates with pre-negotiated wholesale rates and zero risk.
+              South India's one-stop wedding planning & venue curation house. From securing scarce heritage dates to Decor, Catering, Photography, DJ, Makeup, and RSVP hospitality.
             </p>
 
             <div className="flex items-center gap-2 text-xs text-[#9B783E] font-medium">
@@ -43,6 +43,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenPaymentModal }) => {
             <ul className="space-y-2 text-xs text-[#68574B]">
               <li><a href="#why-assisted" className="hover:text-[#B89552] transition-colors">Why Assisted Curation</a></li>
               <li><a href="#venues" className="hover:text-[#B89552] transition-colors">Selected Venues</a></li>
+              <li><a href="#services" className="hover:text-[#B89552] transition-colors">One-Stop Services</a></li>
               <li><a href="#onboarding" className="hover:text-[#B89552] transition-colors">The ₹2,999 Offer</a></li>
               <li><a href="#reviews" className="hover:text-[#B89552] transition-colors">Client Testimonials</a></li>
             </ul>
@@ -62,14 +63,14 @@ export const Footer: React.FC<FooterProps> = ({ onOpenPaymentModal }) => {
               </li>
               <li>
                 <a href="https://wa.me/919741885957" target="_blank" rel="noreferrer" className="hover:text-[#B89552] transition-colors flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full bg-[#25D366]"></span>
+                  <MessageCircle className="w-3.5 h-3.5 text-[#25D366]" />
                   <span>WhatsApp Concierge</span>
                 </a>
               </li>
               <li>
-                <a href="mailto:hello@alayamweddings.in" className="hover:text-[#B89552] transition-colors flex items-center gap-2">
+                <a href="mailto:admin@alayamweddings.in" className="hover:text-[#B89552] transition-colors flex items-center gap-2">
                   <Mail className="w-3.5 h-3.5 text-[#B89552]" />
-                  <span>hello@alayamweddings.in</span>
+                  <span>admin@alayamweddings.in</span>
                 </a>
               </li>
               <li>

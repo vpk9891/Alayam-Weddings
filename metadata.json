@@ -1,0 +1,8 @@
+{
+  "name": "Alayam Weddings | Luxury Event Planning & Venue Curation",
+  "description": "Alayam Weddings connects couples with premier wedding venues and bespoke event planning services across South India with a 100% refundable curation guarantee.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
